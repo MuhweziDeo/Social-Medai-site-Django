@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block title %}My Blog{% endblock title %}
+
+{% block content %}
+    {% for  post in posts   %}
+    <h2><a href="{%url 'post_detail' post.pk%}">{{post.title}}</a></h2>
+    <div class="tag">
+        Tags:{{post.tags.all|join:","}}
+    </div>
+    <p>Published{{post.publish}} by {{post.author}}
+        {% endfor %}
+
+        {% include "blog/pagination.html" with page=posts %}
+{% endblock content %}
